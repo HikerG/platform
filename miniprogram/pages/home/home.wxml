@@ -1,0 +1,109 @@
+<!--index.wxml-->
+<view> 
+<scroll-view  scroll-y="true"  bindscrolltolower="loadMore">
+  <!--轮播栏-->
+  <view class="swiper">
+      <swiper indicator-dots="{{indicatorDots}}" vertical="{{vertical}}"
+              autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
+          <block wx:for-items="{{banner_url}}" wx:key="item.id">
+              <swiper-item>
+                <block wx:if="{{item}}">
+                  <image src="{{item}}"  mode="aspectFill"/>
+                </block>
+                <block wx:else>
+                  <image src="../../images/default_pic.png" mode="aspectFill"></image>
+                </block>
+              </swiper-item>
+          </block>
+      </swiper>
+  </view>
+
+  <!--按钮--> 
+<!--
+<view class="btn center">按<block wx:for-items="{{banner_url}}" wx:key="item.id">
+    <block wx:if="{{item}}">
+      <image src="{{item}}"  mode="aspectFill"/>
+        </block>
+    <block wx:else>
+      <image src="../../images/default_pic.png" mode="aspectFill"></image>
+      </block>      
+  </block>钮-->
+   <!-- <navigator url="../../pages/btn1/btn1" open-type='navigate'>
+      <image src="../../images/btn/01.png" mode="center"/>
+      <text>\n招聘公告</text>
+    </navigator>
+    </view>
+    -->
+
+  
+<!--按钮-->
+<view class="index_btn_box">
+  <view class="index_btn_li" >
+    <view class="index_btn_li_top">
+      <image src="/images/index_aa.png" class="index_btn_img" bindtap='clickbtn1'></image>
+    </view>
+    <view class="index_btn_li_bottom">招聘公告</view>
+  </view>
+  <view class="index_btn_li" >
+    <view class="index_btn_li_top">
+      <image src="/images/index_aa.png" class="index_btn_img" bindtap='clickbtn2'></image>
+    </view>
+    <view class="index_btn_li_bottom">招聘会</view>
+  </view>
+  <view class="index_btn_li" >
+    <view class="index_btn_li_top">
+      <image src="/images/index_aa.png" class="index_btn_img" bindtap='clickbtn3'></image>
+    </view>
+    <view class="index_btn_li_bottom">宣讲会</view>
+  </view>
+  <view class="index_btn_li" >
+    <view class="index_btn_li_top">
+      <image src="/images/index_aa.png" class="index_btn_img" bindtap='clickbtn4'></image>
+    </view>
+    <view class="index_btn_li_bottom">讲座预约</view>
+  </view>
+ <view class="index_btn_li" >
+    <view class="index_btn_li_top">
+      <image src="/images/index_aa.png" class="index_btn_img" bindtap='clickbtn5'></image>
+    </view>
+    <view class="index_btn_li_bottom">办事流程</view>
+  </view>
+</view>
+
+
+  <!--选项卡-->
+  <view class="nav_top">
+    <block wx:for="{{navTopItems}}" wx:key="item.id">
+      <view class="nav_top_items {{curNavId == item.id ? 'active_'+colors[index] : ''}}" bindtap="switchTab" data-index="{{index}}" data-id="{{item.id}}">
+        <text>{{item.title}}</text>
+      </view>
+    </block>
+  </view>
+  
+  <!--文章列表-->
+  <view class="nav_section">
+    <view wx:if="{{list[curIndex]}}">
+        <block wx:for="{{list[curIndex]}}" wx:key="item.id">
+            <view class="nav_section_items" >
+                <!--content-->
+                <view class="section_cont" bindtap="navigateDetail" data-aid="{{item.id}}">
+                    <view class="section_cont_sub">
+                        <text>{{item.subject}}</text>
+                    </view>
+                    <view  class="section_cont_message">{{item.message}}</view>
+                    <view>日期：{{item.data}}</view>
+                </view>
+            </view>
+            
+        </block>
+    </view>
+    <view wx:else>暂无数据</view>
+
+  </view>
+
+  <!--声明-->
+  <view class="bottom">
+  <text>北京大学软件与微电子学院</text>
+  </view>
+</scroll-view>
+</view>
